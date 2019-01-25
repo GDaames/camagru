@@ -1,0 +1,44 @@
+/* Style the form - display items horizontally */
+.form-inline 
+  { 
+    display: flex;
+    justify-content: flex-end;
+    flex-flow: row wrap;
+    align-items: center
+  }
+  
+  /* Style the input fields */
+  .form-inline input 
+  {
+    align-items: center;
+    margin: 10px 5px 5px 0;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+  
+  /* Style the submit button */
+  .form-inline input[type="submit"]
+  {
+    padding: 5px 20px;
+    border-radius: 12px;
+    background-color: #58C0ED;
+    border: 1px solid rgb(255, 255, 255);
+    color: white;
+  }
+
+  /*.form-inline input:hover:not(.active) {background-color:rgb(171, 115, 240);}
+  .form-inline input.active {background-color: rgb(115, 203, 240);}
+  
+  /*Add responsiveness - display the form controls vertically instead of horizontally on screens that are less than 800px wide 
+  @media (max-width: 800px) {
+    .form-inline input {
+      margin: 10px 0;
+    }
+  
+    .form-inline {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+  */
