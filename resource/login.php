@@ -13,7 +13,7 @@ try{
         $data=$select->fetch();
            $_SESSION['email']=$data['email'];
            $_SESSION['name']=$data['name'];
-           header("location: home.php"); 
+           header("location: ../home.php"); 
         }
     }
 

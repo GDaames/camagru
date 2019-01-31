@@ -1,8 +1,13 @@
 <?php
-    include_once 'resource/session.php';
-    //include_once 'resource/database.php';
-    include_once 'resource/login.php';
-    include_once 'resource/signup.php';
+    include_once 'config/session.php';
+    include_once 'config/database.php';
+    
+    session_start();
+    if(empty($_SESSION['email'])){
+        echo "you need to be signed in to access this feature: You will be redirected...";
+        header('Refresh: 2; URL=http://localhost:8080/camagru/home.php');
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -16,17 +21,15 @@
 
     <body>
         <ul class="topnav">
-            <li><a href="index.php">Home</a></li>
+        <li><a href="index.php">Home</a></li>
+            <li><a href="home.php">Camera</a></li>
             <li><a href="gallery.php">Gallery</a></li>
             <li><a class="active" href="profile.php">Profile</a></li>
-            <form class="form-inline" method="post" action="">  
-                <input type="text" name="username" placeholder="Username" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <input style="form-inline input" type="submit" name="loginBtn" value="Sign in">
-            </form>
+            <li><a href=""></a></li>
+            <li><a href="logout.php">Logout</a></li>
         </ul>
 
-        <h1 style="color: white; font-family: Impact, Charcoal, sans-serif;">Camagru</h1>
+        <h1 style="color: white; font-family: Impact, Charcoal, sans-serif; font-size: 30px;">CAMAGRU</h1>
 
     <?php /*
         $con = new PDO("mysql:host=localhost;dbname=camagru","root","123456");
@@ -79,16 +82,5 @@
             header('location:index.php');
         }
     ?>
-
-
-        <!--<div class="bottom">
-            <?php /*if(!isset($_SESSION['username'])): ?>
-            <P style="font-size: 11px">You are currently not signed in <a href="login.php">Log in</a> Not yet a member?" <a href="signup.php">Sign up</a> </P>
-            <?php else: ?>  
-            <p style="font-size: 11px">You are logged in as <?php if(isset($_SESSION['username'])) echo $_SESSION['username']; ?> <a href="logout.php">Logout</a> </p>
-            <?php endif ?>
-            <p>Copyright &copy; <a href="https://www.camagru.com">Camagru</a> <?php echo date('Y') */?>, All rights reserved.</p>
-        </div> -->
-
     </body>
 </html>

@@ -18,18 +18,22 @@
         <ul class="topnav">
             
             <?php if(!isset($_SESSION['email'])): ?>
-            <li><a href="login.php">Log in</a></li>
+            <li><a class="active"href="login.php">Log in</a></li>
             <li><a href="signup.php">Sign up</a><li>
-            <li><a class="active" href="home.php">Camera</a></li>
-            <!-- <li><a href="gallery.php">Gallery</a></li> -->
+            <li><a href="home.php">Camera</a></li>
+            <li><a href="gallery.php">Gallery</a></li>
             <?php else: ?>  
-            <li><p style="font-size: 14px">You are logged in as <?php if(isset($_SESSION['email'])) echo $_SESSION['email'];?> </li> 
+            <li><p style="font-size: 14px">You are logged in as <?php if(isset($_SESSION['email'])) echo $_SESSION['email'];?> </li>
             <li><a href="logout.php">Logout</a> </p><li>
+            <li><a href="profile.php"></a></li>
+            <li><a class="active" href="index.php">Home</a></li>
+            <li><a href="home.php">Camera</a></li>
+            <li><a href="gallery.php">Gallery</a></li>
+            <li><a href="profile.php">Profile</a></li>
             <?php endif ?>
-            <li><h1 style="color: white; font-family: Impact, Charcoal, sans-serif;">Camagru</h1></li>
         </ul>
 
-        <h1 style="color: white; font-family: Impact, Charcoal, sans-serif;">Get Started</h1>
+        <h1 style="color: white; font-family: Impact, Charcoal, sans-serif; font-size: 30px;">CAMAGRU</h1>
 
         <div>
 

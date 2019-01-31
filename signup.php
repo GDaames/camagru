@@ -1,6 +1,6 @@
 <?php
-    include_once 'resource/session.php';
-    include_once 'resource/database.php';
+    include_once 'config/session.php';
+    include_once 'config/database.php';
     include_once 'resource/login.php';
     include_once 'resource/signup.php';
 ?>
@@ -16,10 +16,13 @@
 
     <body>
         <ul class="topnav">
-            <li><a href="index.php">Home</a></li>
+            <li><a href="login.php">Log in</a></li>
+            <li><a class="active" href="signup.php">Sign up</a><li>
             <li><a href="gallery.php">Gallery</a></li>
             <li><a href="profile.php">Profile</a></li>
-            <form class="form-inline" method="post" action="login.php">  
+            <li><a href=""></a></li>
+            <li><a href="index.php">Home</a></li>
+            <form class="form-inline" method="post" action="resource/login.php">  
                 <input type="text" name="username" placeholder="Username" required>
                 <input type="password" name="password" placeholder="Password" required>
                 <input style="form-inline input" type="submit" name="loginBtn" value="Sign in">
@@ -32,7 +35,7 @@
             <img src="avatar2.png" class="avatar">
             <h1>Sign up</h1>
             <P style="font-size: 12px">By signing up, you agree to our <strong>Terms, Data Policy</strong> and <strong>Cookies Policy.</strong></P>
-                <form class="form-inline" method="post" action="signup.php">
+                <form class="form-inline" method="post" action="resource/signup.php">
                     <input style="border-left: 4px solid #58C0ED;
                                   border-bottom: none;
                                   background: transparent;

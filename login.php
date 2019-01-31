@@ -1,7 +1,6 @@
 <?php
-    include_once 'resource/session.php';
-    include_once 'resource/database.php';
-    include_once 'resource/utilities.php';
+    include_once 'config/session.php';
+    include_once 'config/database.php';
     include_once 'resource/login.php';
     include_once 'resource/signup.php';
 
@@ -18,10 +17,13 @@
 
     <body>
         <ul class="topnav">
-            <li><a href="index.php">Home</a></li>
+            <li><a class="active"href="login.php">Log in</a></li>
+            <li><a href="signup.php">Sign up</a><li>
             <li><a href="gallery.php">Gallery</a></li>
             <li><a href="profile.php">Profile</a></li>
-            <form class="form-inline" method="post" action="">  
+            <li><a href=""></a></li>
+            <li><a href="index.php">Home</a></li>
+            <form class="form-inline" method="post" action="resource/login.php">  
                 <input type="text" name="username" placeholder="Username" required>
                 <input type="password" name="password" placeholder="Password" required>
                 <input style="form-inline input" type="submit" name="loginBtn" value="Sign in">
@@ -34,7 +36,7 @@
             <img src="avatar2.png" class="avatar">
             <h1>Sign in</h1>
             
-                <form class="form-inline" method="post" action="">
+                <form class="form-inline" method="post" action="resource/login.php">
                     <input style="border-left: 4px solid #58C0ED;
                                   border-bottom: none;
                                   background: transparent;
@@ -52,10 +54,10 @@
         </div>
 
         <div class="bottom">
-            <?php if(!isset($_SESSION['username'])): ?>
+            <?php if(!isset($_SESSION['email'])): ?>
             <P style="font-size: 11px">You are currently not signed in <a href="login.php">Log in</a> Not yet a member?" <a href="signup.php">Sign up</a> </P>
             <?php else: ?>  
-            <p style="font-size: 11px">You are logged in as <?php if(isset($_SESSION['username'])) echo $_SESSION['username']; ?> <a href="logout.php">Logout</a> </p>
+            <p style="font-size: 11px">You are logged in as <?php if(isset($_SESSION['email'])) echo $_SESSION['email']; ?> <a href="logout.php">Logout</a> </p>
             <?php endif ?>
             <p>Copyright &copy; <a href="https://www.camagru.com">Camagru</a> <?php echo date('Y') ?>, All rights reserved.</p>
         </div>
