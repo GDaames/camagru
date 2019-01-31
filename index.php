@@ -1,8 +1,7 @@
 <?php
-    include_once 'resource/session.php';
-    include_once 'resource/database.php';
+    include_once 'config/session.php';
+    include_once 'config/database.php';
     include_once 'resource/login.php';
-
 ?>
 
 <!DOCTYPE html>
@@ -15,26 +14,26 @@
     </head>
 
     <body>
+
         <ul class="topnav">
-            <li><a href="index.php">Home</a></li>
-            <li><a href="gallery.php">Gallery</a></li>
-            <li><a href="profile.php">Profile</a></li>
-            <form class="form-inline" method="post" action="">  
-                <input type="text" name="email" placeholder="Email" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <input style="form-inline input" type="submit" name="loginBtn" value="LOGIN">
-            </form>
+            
+            <?php if(!isset($_SESSION['email'])): ?>
+            <li><a href="login.php">Log in</a></li>
+            <li><a href="signup.php">Sign up</a><li>
+            <li><a class="active" href="home.php">Camera</a></li>
+            <!-- <li><a href="gallery.php">Gallery</a></li> -->
+            <?php else: ?>  
+            <li><p style="font-size: 14px">You are logged in as <?php if(isset($_SESSION['email'])) echo $_SESSION['email'];?> </li> 
+            <li><a href="logout.php">Logout</a> </p><li>
+            <?php endif ?>
+            <li><h1 style="color: white; font-family: Impact, Charcoal, sans-serif;">Camagru</h1></li>
         </ul>
 
-        <h1 style="color: white; font-family: Impact, Charcoal, sans-serif;">Camagru</h1>
+        <h1 style="color: white; font-family: Impact, Charcoal, sans-serif;">Get Started</h1>
 
-        <div class="bottom">
-            <?php if(!isset($_SESSION['username'])): ?>
-            <P style="font-size: 20px">You are currently not signed in <a href="login.php">Log in</a> Not yet a member?" <a href="signup.php">Sign up</a> </P>
-            <?php else: ?>  
-            <p style="font-size: 20px">You are logged in as <?php if(isset($_SESSION['username'])) echo $_SESSION['username']; ?> <a href="logout.php">Logout</a> </p>
-            <?php endif ?>
-            <p>Copyright &copy; <a href="https://www.camagru.com">Camagru</a> <?php echo date('Y') ?>, All rights reserved.</p>
+        <div>
+
+            <p>Copyright &copy; gdaames - Wethinkcode_- <?php echo date('Y') ?>, All rights reserved.</p>
         </div>
 
     </body>
