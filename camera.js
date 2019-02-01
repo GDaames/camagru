@@ -1,6 +1,6 @@
 
-let width = 500,
-    height = 0,
+let width = 400,
+    height = 200,
     filter = 'none',
     streaming = false;
 
