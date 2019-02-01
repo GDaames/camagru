@@ -11,10 +11,11 @@ try{
         $code = rand(100000, 999999);
         $pass_hash = hash('whirlpool', $pass);
         $insert = $con->prepare("INSERT INTO users (username,email,password,code)
-        values(:username,:email,:password,:code)");
+        VALUES (:username,:email,:password,:code)");
             $insert->bindParam(':username',$username);
             $insert->bindParam(':email',$email);
             $insert->bindParam(':password',$pass_hash);
+            
             $insert->bindParam(':code',$code); 
             $insert->execute();
             $str = "your verification link is http://localhost:8080/camagru/cong.phtml?user=".$email."&code=".$code;
@@ -23,10 +24,8 @@ try{
             header('Refresh: 5; URL=http://localhost:8080/camagru/index.php');
         }
     }
-
-    catch(PDOException $e)
+catch(PDOException $e)
     {
     echo "error".$e->getMessage();
     }
-    
 ?>

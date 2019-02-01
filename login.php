@@ -49,8 +49,10 @@
                                   padding: 2px 60px 2px 70px;
                                   height: 30px;
                                   color: rgb(255, 255, 255);"type="password" name="password" placeholder="Password" required>
-                    <input style="float: none;" type="submit" name="loginBtn" value="Sign in">
+                    <input style="float: none;" type="submit" name="loginBtn" value="Sign in"><br>
                 </form>
+                <a href="forgot.php"><input style="form-inline input" type="submit" name="forgot" value="Forgot password?"><a>
+                
         </div>
 
         <div class="bottom">
