@@ -1,17 +1,17 @@
 <?php
-
 session_start();
-$image=$_POST['image'];
+$image=$_POST['image'];                     // Get the image and convert into string
+$data = base64_encode($image);              // Encode the image string data into base64
 try {
-    $con = new PDO("mysql:host=localhost;dbname=camagru","root","123456");
-    $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $photos = "INSERT INTO images(photo, pname, likes)
+    $db = new PDO("mysql:host=localhost;dbname=camagru","root","123456");
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $sql = "INSERT INTO images (photo, pname, likes)
     VALUES ('$image', 'pname', '0')";
-    $con->exec($photos);
+    $db->exec($sql);
  }
   catch(PDOException $e)
   {
-      echo "error".$e->getMessage();
+      echo $sql."ERROR".$e->getMessage();
   }
   header("location:home.php")
-?>
+?> 

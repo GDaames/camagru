@@ -1,7 +1,7 @@
 <?php session_start();
 if(empty($_SESSION['email'])){
     echo "you need to be signed in to access this feature: You will be redirected...";
-    header('Refresh: 2; URL=http://localhost:8080/camagru/home.php');}
+    header('Refresh: 2; URL=http://localhost:8080/camagru/login.php');}
 ?>
 
 <!DOCTYPE html>
@@ -25,12 +25,12 @@ if(empty($_SESSION['email'])){
         <h1 style="color: white; font-family: Impact, Charcoal, sans-serif; font-size: 30px;">CAMAGRU</h1>
 <?php
  //echo file_get_contents( "nav.phtml" );
- $image=$_POST['image'];
+ $image=$_POST[''];
  try{
-     $con = new PDO("mysql:host=localhost;dbname=camagru","root","123456");
-     $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+     $db = new PDO("mysql:host=localhost;dbname=camagru","root","123456");
+     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
      $display = "SELECT * FROM images";
-     $do = $con->query($display);
+     $do = $db->query($display);
 
      $id = $_GET['id'];
 
