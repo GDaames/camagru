@@ -1,6 +1,8 @@
 <?php
+    include_once './config/database.php';
     session_start();
-    if(empty($_SESSION['email'])){
+    
+    if(!isset($_SESSION['email'])){
         echo "you need to be signed in to access this feature: You will be redirected...";
         header('Refresh: 2; URL=http://localhost:8080/camagru/login.php');
     }
@@ -23,7 +25,7 @@
             <li><a href="gallery.php">Gallery</a></li>
             <li><a href="profile.php">Profile</a></li>
             <li><a href=""></a></li>
-            <li><a href="index.php">Logout</a></li>
+            <li><a href="./resource/logout.php">Logout</a></li>
         </ul>
 
         <h1 style="color: white; font-family: Impact, Charcoal, sans-serif; font-size: 30px;">Camagru</h1>

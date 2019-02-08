@@ -1,6 +1,6 @@
 <?php
-    include_once 'config/session.php';
-    include_once 'config/Database.php';
+    include_once './config/Database.php';
+    session_start();
 
 if(isset($_POST['confirm']))
 {

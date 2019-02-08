@@ -1,7 +1,11 @@
-<?php session_start();
-if(empty($_SESSION['email'])){
-    echo "you need to be signed in to access this feature: You will be redirected...";
-    header('Refresh: 2; URL=http://localhost:8080/camagru/login.php');}
+<?php 
+    include_once './config/database.php';
+    session_start();
+
+    if(empty($_SESSION['email'])){
+        echo "you need to be signed in to access this feature: You will be redirected...";
+        header('Refresh: 2; URL=http://localhost:8080/camagru/login.php');
+    }
 ?>
 
 <!DOCTYPE html>
@@ -20,31 +24,19 @@ if(empty($_SESSION['email'])){
             <li><a class="active" href="gallery.php">Gallery</a></li>
             <li><a href="profile.php">Profile</a></li>
             <li><a href=""></a></li>
-            <li><a href="logout.php">Logout</a></li>
+            <li><a href="./resource/logout.php">Logout</a></li>
         </ul>
         <h1 style="color: white; font-family: Impact, Charcoal, sans-serif; font-size: 30px;">CAMAGRU</h1>
 
 <?php
-    // echo "SESSION= "; print_r($_SESSION); 
-    // echo "POST= "; print_r($_POST);
-    // echo "GET= "; print_r($_GET);
- try{
-     $db = new PDO("mysql:host=localhost;dbname=camagru","root","123456");
-     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    }catch(PDOException $e){
-        echo "error".$e->getMessage();
-    }
-
     $display = "SELECT * FROM images";
     $do = $db->query($display);
     while($pics = $do->fetch())
     {
-      echo "<img src=\"".$pics['photo']."\">";
-      echo "<script>window.location.Gallery;</script>";
+        echo $pics['email'];
+        echo "<img src=\"".$pics['photo']."\">";
+        echo "<script>window.location.Gallery;</script>";
     }
-
-      
 ?>
 
 
