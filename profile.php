@@ -1,7 +1,7 @@
 <?php
-    include_once 'config/database.php';
-    
+    include_once './config/database.php';
     session_start();
+
     if(empty($_SESSION['email'])){
         echo "you need to be signed in to access this feature: You will be redirected...";
         header('Refresh: 2; URL=http://localhost:8080/camagru/login.php');
@@ -25,7 +25,7 @@
             <li><a href="gallery.php">Gallery</a></li>
             <li><a class="active" href="profile.php">Profile</a></li>
             <li><a href=""></a></li>
-            <li><a href="logout.php">Logout</a></li>
+            <li><a href="./resource/logout.php">Logout</a></li>
         </ul>
 
 <?php
@@ -79,5 +79,19 @@
                     <input style="float: none;" type="submit" name="confirm" value="submit">
                 </form>
         </div>
+
+        <?php
+            $email = $_SESSION['email'];
+
+            $display = "SELECT * FROM images WHERE email='$email'";
+            $do = $db->query($display);
+            while($pics = $do->fetch())
+            {
+                echo $email;
+                echo "<img src=\"".$pics['photo']."\">";
+                echo "<script>window.location.Gallery;</script>";
+            }
+        ?>
+    
     </body>
 </html>

@@ -1,8 +1,4 @@
-<?php
-
-    include_once "resource/login.php";
-
-?>
+<?php session_start(); ?>
 
 <!DOCTYPE html>
 <html>
@@ -40,7 +36,7 @@
             <img src="avatar2.png" class="avatar">
             <h1>Log in</h1>
             
-                <form class="form-inline" method="post" action="resource/login.php">
+                <form class="form-inline" method="post" action="./resource/login.php">
                     <input style="border-left: 4px solid #58C0ED;
                                   border-bottom: none;
                                   background: transparent;

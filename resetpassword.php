@@ -1,9 +1,7 @@
 <?php
+    include_once './config/database.php';
     session_start();
-    include('config/Database.php');
-    // echo "SESSION= "; print_r($_SESSION); 
-    // echo "POST= "; print_r($_POST);
-    // echo "GET= "; print_r($_GET); 
+
     if(isset($_POST['submit'])){
         $email = $_POST['email'];
         $password = hash('whirlpool',$_POST['newpassword']);
