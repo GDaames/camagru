@@ -2,7 +2,7 @@
 
   try {
     $conn = new PDO("mysql:host=localhost", "root", "123456");
-    $conn->setAttribute(PDO::ERRMODE_EXCEPTION);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   }
 
   catch(PDOException $error) {
@@ -18,25 +18,23 @@
           password VARCHAR(255) UNIQUE,
           code INT,
           reg_date TIMESTAMP NOT NULL,
-          isVerified INT(1) DEFAULT 0)"
+          isVerified INT(1) DEFAULT 0 )"
   );
 
   $conn->exec("CREATE TABLE images (
           id INT PRIMARY KEY AUTO_INCREMENT,
+          email VARCHAR(255) NOT NULL,
           photo LONGTEXT NOT NULL,
           pname VARCHAR(255) NOT NULL,
-          likes INT DEFAULT 0)"
+          likes INT(11) DEFAULT NULL,
+          posted TIMESTAMP NOT NULL )"
   );
-
-  $conn->exec("CREATE TABLE password_reset_request (
-          id int(10) unsigned NOT NULL AUTO_INCREMENT,
-          user_id int(10) unsigned NOT NULL,
-          date_requested datetime NOT NULL,
-          token varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-          PRIMARY KEY (`id`)
-          ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1"
+   
+  $conn->exec("CREATE TABLE likes ( 
+          id INT NOT NULL AUTO_INCREMENT , 
+          pid INT NOT NULL, 
+          username VARCHAR(255) NOT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB "
   );
 
   header('Location: ../index.php');
 ?>
-
