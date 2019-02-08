@@ -3,7 +3,7 @@
 
     session_start();
     if(isset($_POST['loginBtn'])){
-        $email = ($_POST['email']);      // Turn our post into a local variable
+        $email = ($_POST['email']);      
         $pass = hash('whirlpool',$_POST['password']); 
 
     $select = $db->prepare("SELECT * FROM users WHERE email='$email' and password='$pass' and isVerified='1'");
@@ -12,7 +12,7 @@
     $data=$select->fetch();
         $_SESSION['email']=$data['email'];
         $_SESSION['password']=$data['password'];
-    header("location: ../home.php");
+    header("location: ../profile.php");
     }
 ?>
 

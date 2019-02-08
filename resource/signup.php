@@ -28,7 +28,7 @@ try{
                 $insert->bindParam(':code',$code); 
                 $insert->execute();
                 $str = "your verification link is http://localhost:8080/camagru/confirm.php?user=".$email."&code=".$code ;
-                $headers = 'From:noreply@camagru.com' . "\r\n"; // Set from headers
+                $headers = 'From:noreply@camagru.com' . "\r\n"; 
                 mail($email, "CAMAGRU Confirmation", $str, $headers);
                 echo "Link sent: check your mail for a verification link.";
                 header('Refresh: 3; URL=http://localhost:8080/camagru/login.php');

@@ -1,7 +1,4 @@
-<?php
-
-    include_once "resource/signup.php";
-?>
+<?php session_start(); ?>
 
 <!DOCTYPE html>
 <html>
