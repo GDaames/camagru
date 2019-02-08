@@ -1,8 +1,6 @@
 <?php
-    include_once 'config/session.php';
-    include_once 'config/database.php';
-    include_once 'resource/login.php';
-    include_once 'resource/signup.php';
+
+    include_once "resource/signup.php";
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +20,7 @@
             <li><a href="profile.php">Profile</a></li>
             <li><a href=""></a></li>
             <li><a href="index.php">Home</a></li>
-            <form class="form-inline" method="post" action="resource/login.php">  
+            <form class="form-inline" method="post" action="signup.php">  
                 <input type="text" name="username" placeholder="Username" required>
                 <input type="password" name="password" placeholder="Password" required>
                 <input style="form-inline input" type="submit" name="loginBtn" value="Sign in">

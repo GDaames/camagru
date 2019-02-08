@@ -1,8 +1,6 @@
 <?php
-    include_once 'config/session.php';
-    include_once 'config/database.php';
-    include_once 'resource/login.php';
-    include_once 'resource/signup.php';
+
+    include_once "resource/login.php";
 
 ?>
 
@@ -32,9 +30,15 @@
 
         <h1 style="color: white; font-family: Impact, Charcoal, sans-serif;">Camagru</h1>
 
+        <?php 
+            if(isset($msg)){                                                // Check if $msg is not empty
+                echo '<div class="statusmsg">'.$msg.'</div>';               // Display our message and wrap it with a div with the class "statusmsg".
+            } 
+        ?>
+
         <div class="loginbox">
             <img src="avatar2.png" class="avatar">
-            <h1>Sign in</h1>
+            <h1>Log in</h1>
             
                 <form class="form-inline" method="post" action="resource/login.php">
                     <input style="border-left: 4px solid #58C0ED;

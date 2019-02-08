@@ -1,9 +1,3 @@
-<?php
-    include_once 'config/session.php';
-    include_once 'config/database.php';
-    include_once 'resource/login.php';
-?>
-
 <!DOCTYPE html>
 <html>
     <head lang="en">

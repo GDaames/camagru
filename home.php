@@ -54,30 +54,3 @@
         
     </body>
 </html>
-
-
-
-
-
-            <!-- <div class="booth">
-                    <video id="video" width="400" height="300" autoplay="true" ondrop="drop(event)"></video>
-                    <canvas id="filters" width="400" height="300"></canvas>
-                    
-                
-                <select id="photo-filter">
-                    <option value="none">Normal</option>
-                    <option value="grayscale(100%)">Grayscale</option>
-                    <option value="sepia(100%)">Sepia</option>
-                    <option value="invert(100%)">Invert</option>
-                    <option value="hue-rotate(90deg)">Hue</option>
-                    <option value="blur(10px)">Blur</option>
-                    <option value="contrast(200%)">Contrast</option>
-                </select>
-                <button id="clear-button">Clear</button>
-                <button id="photo-button" onclick="snap();">Take Photo</button>
-                <canvas id="canvas" width="400" height="300"></canvas>
-                <form action="upimage.php" method="post">
-                    <input id="camera" type="hidden" name="image">
-                    <input type=submit value="save">
-                </form>
-            </div> -->

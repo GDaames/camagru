@@ -1,11 +1,10 @@
 <?php
-    include_once 'config/session.php';
     include_once 'config/database.php';
     
     session_start();
     if(empty($_SESSION['email'])){
         echo "you need to be signed in to access this feature: You will be redirected...";
-        header('Refresh: 2; URL=http://localhost:8080/camagru/home.php');
+        header('Refresh: 2; URL=http://localhost:8080/camagru/login.php');
     }
 
 ?>
@@ -29,58 +28,56 @@
             <li><a href="logout.php">Logout</a></li>
         </ul>
 
-        <h1 style="color: white; font-family: Impact, Charcoal, sans-serif; font-size: 30px;">CAMAGRU</h1>
+<?php
+    if(isset($_POST['confirm'])){
+        $username = $_POST['newusername'];
+        $password = hash('whirlpool',$_POST['newpassword']);
+        $cpassword = hash('whirlpool',$_POST['cnewpassword']);
+        $email = $_POST['email'];
 
-    <?php /*
-        $con = new PDO("mysql:host=localhost;dbname=camagru","root","123456");
-        $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        if (isset($_GET['submit'])) {
-            $id = $_GET['did'];
-            $name = $_GET['dname'];
-            $email = $_GET['demail'];
-            $pass = hash('whirlpool', $_GET['dpass']);
-            $query = $con->prepare("UPDATE users SET `name`='$name', `email`='$email' WHERE `id` = $id");
-            $query->execute();
-        }
-        $query = $con->prepare("SELECT * FROM users");
-        $query->setFetchMode(PDO::FETCH_ASSOC);
-        $query->execute();
-
-    while ($row = $query->fetch()) {
-        if ($row['name'] == $_SESSION['name']){
-            echo "<b><a href='profile.php?update={$row['id']}'>{$row['name']}</a></b>";
-            echo "<br />";
+        if($cpassword != $password){
+            echo " <strong>Sorry!</strong>  password's do not match. ";
+        } else { 
+            $stmt = $db->prepare("UPDATE users SET username='$username', password='$password' WHERE email='$email'");
+            $stmt->execute();
+            echo "Your changes have been made. You will be redirected";
+            header('Refresh: 2; URL=http://localhost:8080/camagru/profile.php');
         }
     }
-    
-    */?>
+?>
+        
+        <h1 style="color: white; font-family: Impact, Charcoal, sans-serif; font-size: 30px;">CAMAGRU</h1>
 
-    <?php
-        if (isset($_GET['update'])) {
-            $update = $_GET['update'];
-            $query1 = $con->prepare("SELECT * FROM users WHERE id=$update");
-            $query1->execute();
-            while ($row1 = $query1->fetch()) {
-                echo "<form class='form' method='get'>";
-                echo "<h2>Update Form</h2>";
-                echo "<hr/>";
-                echo "<input class='input' type='hidden' name='did' value='{$row1['id']}' />";
-                echo "<br />";
-                echo "<label>" . "Name:" . "</label>" . "<br />";
-                echo "<input class='input' type='text' name='dname' value='{$row1['name']}' />";
-                echo "<br />";
-                echo "<label>" . "Email:" . "</label>" . "<br />";
-                echo "<input class='input' type='text' name='demail' value='{$row1['email']}' />";
-                echo "<br />";
-                echo "</textarea>";
-                echo "<br />";
-                echo "<input class='submit' type='submit' name='submit' value='update' />";
-                echo "</form>";
-            }
-        }
-        if (isset($_GET['submit'])) {
-            header('location:index.php');
-        }
-    ?>
+        <div class="loginbox">
+            <img src="avatar2.png" class="avatar">
+            <h1>Update Details</h1>
+                <form class="form-inline" method="post" action="profile.php">
+                    <input style="border-left: 4px solid #58C0ED;
+                                  border-bottom: none;
+                                  background: transparent;
+                                  padding: 2px 60px 2px 70px;
+                                  height: 30px;
+                                  color: rgb(255, 255, 255);"type="email" name="email" placeholder="Please re-enter email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+                    <input style="border-left: 4px solid #58C0ED;
+                                  border-bottom: none;
+                                  background: transparent;
+                                  padding: 2px 60px 2px 70px;
+                                  height: 30px;
+                                  color: rgb(199, 199, 199);" type="text" name="newusername" placeholder="Enter new username" required>
+                    <input style="border-left: 4px solid #58C0ED;
+                                  border-bottom: none;
+                                  background: transparent;
+                                  padding: 2px 60px 2px 70px;
+                                  height: 30px;
+                                  color: rgb(255, 255, 255);"type="password" name="newpassword"  type="text" maxlength="255" placeholder="Enter new password" required>
+                    <input style="border-left: 4px solid #58C0ED;
+                                  border-bottom: none;
+                                  background: transparent;
+                                  padding: 2px 60px 2px 70px;
+                                  height: 30px;
+                                  color: rgb(255, 255, 255);"type="password" name="cnewpassword"  type="text" maxlength="255" placeholder="Confirm new password" required>
+                    <input style="float: none;" type="submit" name="confirm" value="submit">
+                </form>
+        </div>
     </body>
 </html>
