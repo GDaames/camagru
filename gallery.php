@@ -13,7 +13,7 @@
     <head lang="en">
     <title>Gallery</title>
         <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="./css/navbar.css">
+        <link rel="stylesheet" type="text/css" href="./css/cam.css">
         <link rel="stylesheet" type="text/css" href="./css/inlineform.css">
     </head>
 
@@ -31,12 +31,33 @@
 <?php
     $display = "SELECT * FROM images";
     $do = $db->query($display);
-    while($pics = $do->fetch())
-    {
-        echo $pics['email'];
-        echo "<img src=\"".$pics['photo']."\">";
-        echo "<script>window.location.Gallery;</script>";
+    
+    while ($pics = $do->fetch()) {
+        echo '<form method="post" action="gallery.php">';
+            echo '<u>'.$pics['email'].'</u>';
+            echo "<img src=\"".$pics['photo']."\">";
+            echo '<u>'.$pics['id'].'</u>';
+            echo '<br>';
+            echo '<button name='.$pics['id'].' value='.$pics['id'].' type="submit">Like</button>';
+            echo '<hr>';
+        echo '</form>';
     }
+    $email = $_SESSION['email'];
+
+    $select = $db->prepare("SELECT * FROM images WHERE email='$email'");
+    $select->setFetchMode(PDO::FETCH_ASSOC);
+    $select->execute();
+    $result=$select->fetch();
+    $id=$result['id'];
+
+    if(isset($_POST['id'])){
+        print_r($_POST);
+        $like = $db->prepare("UPDATE images SET likes = likes +1 WHERE id ='$id'");
+        $like->execute();
+        echo "you liked this!";
+    }
+    // echo"SESSION= ";print_r($_SESSION);
+    echo"POST= ";print_r($_POST);
 ?>
 
 
