@@ -3,8 +3,10 @@
     session_start();
     
     if(!isset($_SESSION['email'])){
-        echo "you need to be signed in to access this feature: You will be redirected...";
-        header('Refresh: 2; URL=http://localhost:8080/camagru/login.php');
+        $msg =  "you need to be signed in to view this";
+        echo "<script LANGUAGE='JavaScript'>
+        window.alert('$msg');
+        window.location.href='http://localhost:8080/camagru/login.php'; </script>";
     }
 ?>
 
@@ -50,7 +52,7 @@
     </form>
  </div>
  
-         <script src="camera.js"></script>
+         <script src="./js/camera.js"></script>
 
             <p>Copyright &copy; <a href="https://www.camagru.com">Camagru</a> <?php echo date('Y') ?>, All rights reserved.</p>
         

@@ -55,14 +55,14 @@ if(isset($_POST['confirm']))
 
         <div class="loginbox">
             <img src="avatar2.png" class="avatar">
-            <h1>Confirm Email</h1>
+            <h1>Forgot Passsword</h1>
                 <form class="form-inline" id="form" method="post" action="forgot.php">
                     <input style="border-left: 4px solid #58C0ED;
                                   border-bottom: none;
                                   background: transparent;
                                   padding: 2px 60px 2px 70px;
                                   height: 30px;
-                                  color: rgb(255, 255, 255);"type="email" name="email" placeholder="Confirm Email" required>
+                                  color: rgb(255, 255, 255);"type="email" name="email" placeholder="Please Confirm Email" required>
                     <input style="float: none;" type="submit" name="confirm" id="forgotBtn" value="Submit"><br>   
                     <input name="confirm" onclick="location.href='index.php';" class="buttons" type="submit" id="back_btn" value="Back to Homepage"><br>
                 </form>

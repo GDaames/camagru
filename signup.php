@@ -35,20 +35,26 @@
                                   border-bottom: none;
                                   background: transparent;
                                   padding: 2px 60px 2px 70px;
-                                  height: 30px;
+                                  height: 30px; text-align: center;
                                   color: rgb(199, 199, 199);" type="text" name="username" placeholder="Username" required>
                     <input style="border-left: 4px solid #58C0ED;
                                   border-bottom: none;
                                   background: transparent;
                                   padding: 2px 60px 2px 70px;
-                                  height: 30px;
-                                  color: rgb(255, 255, 255);"type="email" name="email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+                                  height: 30px; text-align: center;
+                                  color: rgb(199, 199, 199);"type="email" name="email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
                     <input style="border-left: 4px solid #58C0ED;
                                   border-bottom: none;
                                   background: transparent;
                                   padding: 2px 60px 2px 70px;
-                                  height: 30px;
-                                  color: rgb(255, 255, 255);"type="password" name="password"  type="text" maxlength="255" placeholder="Password" required>
+                                  height: 30px; text-align: center;
+                                  color: rgb(199, 199, 199);"type="password" name="password" maxlength="255" placeholder="Password" required>
+                    <input style="border-left: 4px solid #58C0ED;
+                                  border-bottom: none;
+                                  background: transparent;
+                                  padding: 2px 60px 2px 70px;
+                                  height: 30px; text-align: center;
+                                  color: rgb(199, 199, 199);"type="password" name="cpassword" maxlength="255" placeholder="Confirm Password" required>
                     <input style="float: none;" type="submit" name="signupBtn" value="Sign up">
                 </form>
         </div>

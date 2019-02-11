@@ -3,10 +3,11 @@
     session_start();
 
     if(empty($_SESSION['email'])){
-        echo "you need to be signed in to access this feature: You will be redirected...";
-        header('Refresh: 2; URL=http://localhost:8080/camagru/login.php');
+        $msg =  "you need to be signed in to view this";
+        echo "<script LANGUAGE='JavaScript'>
+        window.alert('$msg');
+        window.location.href='http://localhost:8080/camagru/login.php'; </script>";
     }
-
 ?>
 
 <!DOCTYPE html>
@@ -34,14 +35,35 @@
         $password = hash('whirlpool',$_POST['newpassword']);
         $cpassword = hash('whirlpool',$_POST['cnewpassword']);
         $email = $_POST['email'];
-
-        if($cpassword != $password){
-            echo " <strong>Sorry!</strong>  password's do not match. ";
+        $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+            $msg = "$email is a valid email address";
+        } else {
+            $msg = "$email is not a valid email address";
+            echo "<script LANGUAGE='JavaScript'>
+            window.alert('$msg');
+            window.location.href='http://localhost:8080/camagru/profile.php';
+            </script>";
+        } if($cpassword != $password){
+            $msg = "oops! passwords do NOT match!";
+            echo "<script LANGUAGE='JavaScript'>
+            window.alert('$msg');
+            window.location.href='http://localhost:8080/camagru/profile.php';
+            </script>";
+        } else if (strlen($password) < 6 || strlen($password) > 12 || !preg_match("#[A-Z]+#", $password)){
+            $msg = "password must be 6-12 characters and contain atleast 1 capital letter";
+            echo "<script LANGUAGE='JavaScript'>
+            window.alert('$msg');
+            window.location.href='http://localhost:8080/camagru/profile.php';
+            </script>";
         } else { 
             $stmt = $db->prepare("UPDATE users SET username='$username', password='$password' WHERE email='$email'");
             $stmt->execute();
-            echo "Your changes have been made. You will be redirected";
-            header('Refresh: 2; URL=http://localhost:8080/camagru/profile.php');
+            $msg =  "profile successfully updated";
+            echo "<script LANGUAGE='JavaScript'>
+            window.alert('$msg');
+            window.location.href='http://localhost:8080/camagru/profile.php';
+            </script>";
         }
     }
 ?>
@@ -57,7 +79,7 @@
                                   background: transparent;
                                   padding: 2px 60px 2px 70px;
                                   height: 30px;
-                                  color: rgb(255, 255, 255);"type="email" name="email" placeholder="Please re-enter email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+                                  color: rgb(199, 199, 199);"type="email" name="email" placeholder="Please Confirm email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
                     <input style="border-left: 4px solid #58C0ED;
                                   border-bottom: none;
                                   background: transparent;
@@ -69,28 +91,29 @@
                                   background: transparent;
                                   padding: 2px 60px 2px 70px;
                                   height: 30px;
-                                  color: rgb(255, 255, 255);"type="password" name="newpassword"  type="text" maxlength="255" placeholder="Enter new password" required>
+                                  color: rgb(199, 199, 199);"type="password" name="newpassword"  type="text" maxlength="255" placeholder="Enter new password" required>
                     <input style="border-left: 4px solid #58C0ED;
                                   border-bottom: none;
                                   background: transparent;
                                   padding: 2px 60px 2px 70px;
                                   height: 30px;
-                                  color: rgb(255, 255, 255);"type="password" name="cnewpassword"  type="text" maxlength="255" placeholder="Confirm new password" required>
+                                  color: rgb(199, 199, 199);"type="password" name="cnewpassword"  type="text" maxlength="255" placeholder="Confirm new password" required>
                     <input style="float: none;" type="submit" name="confirm" value="submit">
                 </form>
         </div>
 
         <?php
-            $email = $_SESSION['email'];
+        // var_dump($_SESSION);
+        //     $email = $_SESSION['email'];
 
-            $display = "SELECT * FROM images WHERE email='$email'";
-            $do = $db->query($display);
-            while($pics = $do->fetch())
-            {
-                echo $email;
-                echo "<img src=\"".$pics['photo']."\">";
-                echo "<script>window.location.Gallery;</script>";
-            }
+        //     $display = "SELECT * FROM images WHERE email='$email'";
+        //     $do = $db->query($display);
+        //     while($pics = $do->fetch())
+        //     {
+        //         echo $email;
+        //         echo "<img src=\"".$pics['photo']."\">";
+        //         echo "<script>window.location.Gallery;</script>";
+        //     }
         ?>
     
     </body>
