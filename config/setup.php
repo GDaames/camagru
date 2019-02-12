@@ -18,25 +18,29 @@
           password VARCHAR(255) UNIQUE,
           code INT,
           reg_date TIMESTAMP NOT NULL,
-          isVerified INT(1) DEFAULT 0 )"
+          verified INT(1) DEFAULT 0 )"
   );
 
   $conn->exec("CREATE TABLE images (
           id INT PRIMARY KEY AUTO_INCREMENT,
-          email VARCHAR(255) NOT NULL,
+          username VARCHAR(255) NOT NULL,
           photo LONGTEXT NOT NULL,
-          pname VARCHAR(255) NOT NULL,
+          title VARCHAR(255) NOT NULL,
           likes INT(11) DEFAULT NULL,
-          posted TIMESTAMP NOT NULL,
+          stamp TIMESTAMP NOT NULL,
           comment VARCHAR(255) NOT NULL,
-          image VARCHAR(25) NOT NULL)"
+          upload LONGBLOB NOT NULL)"
   );
    
-  $conn->exec("CREATE TABLE likes ( 
-          id INT NOT NULL AUTO_INCREMENT , 
-          pid INT NOT NULL, 
-          username VARCHAR(255) NOT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB "
-  );
+  // $conn->exec("CREATE TABLE likes ( 
+  //         id INT NOT NULL AUTO_INCREMENT , 
+  //         pid INT NOT NULL, 
+  //         username VARCHAR(255) NOT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB "
+  // );
 
-  header('Location: ../index.php');
+  $msg = "Database successfully created! Proceed to log in";
+  echo "<script LANGUAGE='JavaScript'>
+  window.alert('$msg');
+  window.location.href='http://localhost:8080/camagru/signup.php';
+  </script>";
 ?>

@@ -46,7 +46,7 @@
     </div>
     <button id ="capture" class="booth-capture-button" onclick="snap();">Take Photo</button>
     <canvas id="canvas" width="400" height="300"></canvas>
-    <form action="upimage.php" method="post">
+    <form action="upimage.php" method="POST">
         <input id="camera" type="hidden" name="image">
         <input type=submit value="save">
     </form>

@@ -79,6 +79,8 @@ div.desc {
         <h1 style="color: white; font-family: Impact, Charcoal, sans-serif; font-size: 30px;">CAMAGRU</h1>
 
 <?php
+    $username = $_SESSION['username'];
+
     $display = $db ->prepare("SELECT * FROM images");
     $display->setFetchMode(PDO::FETCH_ASSOC);
     $display->execute();
@@ -112,36 +114,21 @@ div.desc {
         echo '</form>';
     }
 
-    // $username = $_SESSION['username'];
+    
     // $select = $db->prepare("SELECT * FROM images WHERE username='$username'");
     // $select->setFetchMode(PDO::FETCH_ASSOC);
     // $select->execute();
     // $data=$select->fetch();
-    $data=$display->fetch();
-    $data['id'];
-    $data['username'];
-    $data['title'];
-    $data['timestamp'];
-    $comment = $_POST['comment'];
+    // $data['id'];
+    // $data['username'];
+    // $data['title'];
+    // $data['timestamp'];
 
-    if(isset($_POST['id'])){
-        print_r($_POST);
-        $like = $db->prepare("UPDATE images SET likes = likes +1 WHERE id ='$id'");
-        $like->execute();
-        echo "you liked this!";
-    }
-
-    if(isset($_POST['delete'])) { 
-        $del = $db->prepare("DELETE FROM images WHERE id=$id");
-        $del->bindParam(":id",$id,PDO::PARAM_INT);
-        $del->execute();
-    }
-    if(isset($_POST['comment'])) { 
-        $insert = $db->prepare("INSERT INTO images (comment)
-        values(:comment)");
-            $insert->bindParam(':comment',$comment);
-            $insert->execute();
-    }
+    // if(isset($_POST['delete'])) { 
+    //     $del = $db->prepare("DELETE FROM images WHERE id=$id");
+    //     $del->bindParam(":id",$id,PDO::PARAM_INT);
+    //     $del->execute();
+    // }
 ?>
 
 

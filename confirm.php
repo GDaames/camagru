@@ -5,9 +5,13 @@
     if (isset($_GET)){
         $db = new PDO("mysql:host=localhost;dbname=camagru","root","123456");
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stmt = $db->prepare("UPDATE users SET isVerified=1 WHERE  code=$code");
+        $stmt = $db->prepare("UPDATE users SET verified=1 WHERE  code=$code");
         $stmt->execute();
-        echo "Succesfully Activated";
+        $msg = "Activation Success!";
+        echo "<script LANGUAGE='JavaScript'>
+        window.alert('$msg');
+        window.location.href='http://localhost:8080/camagru/login.php';
+        </script>";
     }
 ?>
 
