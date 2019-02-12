@@ -12,8 +12,10 @@
         } else {
             $stmt = $db->prepare("UPDATE users SET password='$cpassword' WHERE email='$email'");
             $stmt->execute();
-            echo "password Changed.";
-            header("refresh:1; login.php");
+            $msg = "password Changed.";
+            echo "<script LANGUAGE='JavaScript'>
+            window.alert('$msg');
+            window.location.href='http://localhost:8080/camagru/login.php'; </script>";
         }
     }
 ?>

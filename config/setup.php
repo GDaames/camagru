@@ -27,7 +27,9 @@
           photo LONGTEXT NOT NULL,
           pname VARCHAR(255) NOT NULL,
           likes INT(11) DEFAULT NULL,
-          posted TIMESTAMP NOT NULL )"
+          posted TIMESTAMP NOT NULL,
+          comment VARCHAR(255) NOT NULL,
+          image VARCHAR(25) NOT NULL)"
   );
    
   $conn->exec("CREATE TABLE likes ( 

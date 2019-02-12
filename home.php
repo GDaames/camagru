@@ -39,7 +39,7 @@
     <video id="video" width="400" height="300" autoplay="true" ondrop="drop(event)"></video>
     <canvas id="filters" width="400" height="300"></canvas>
     <div>
-         <!-- <button  onclick="add_effect(0);"><img src="filters/12.png"/></button> -->
+         <button  onclick="add_effect(0);"><img src="filters/12.png"/></button>
          <!-- <button  onclick="add_effect(1);"><img src="./filters/f3.png"/></button>
          <button  onclick="add_effect(2);"><img src="./filters/f4.png"/></button>
          <button  onclick="add_effect(3);"><img src="./filters/13.png"/></button> -->

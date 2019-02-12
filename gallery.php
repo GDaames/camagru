@@ -2,7 +2,7 @@
     include_once './config/database.php';
     session_start();
 
-    if(empty($_SESSION['email'])){
+    if(empty($_SESSION['username'])){
         $msg =  "you need to be signed in to view this";
         echo "<script LANGUAGE='JavaScript'>
         window.alert('$msg');
@@ -91,7 +91,7 @@ div.desc {
             echo '<div class="gallery">';
                 echo '<a target="_blank" href="#">';
                 echo '<form method="post" action="gallery.php">';
-                echo "<td><img src=\"".$pics['photo']."\" alt=\"".$pics['email']."\" class='gallery' width='500' height='400'></td>";
+                echo "<td><img src=\"".$pics['photo']."\" alt=\"".$pics['username']."\" class='gallery' width='500' height='400'></td>";
                 echo '</a>';
                 echo '<div class="desc"><textarea type="text" name="textarea" maxlength="256" rows=4 cols="40" placeholder="write a comment" rows="10" cols="100" required></textarea></div>';
                 // echo '<input type="submit" name="comment" value="comment" id="submit">';
@@ -112,12 +112,16 @@ div.desc {
         echo '</form>';
     }
 
-    $email = $_SESSION['email'];
-    $select = $db->prepare("SELECT * FROM images WHERE email='$email'");
-    $select->setFetchMode(PDO::FETCH_ASSOC);
-    $select->execute();
-    $data=$select->fetch();
-    $id=$data['id'];
+    // $username = $_SESSION['username'];
+    // $select = $db->prepare("SELECT * FROM images WHERE username='$username'");
+    // $select->setFetchMode(PDO::FETCH_ASSOC);
+    // $select->execute();
+    // $data=$select->fetch();
+    $data=$display->fetch();
+    $data['id'];
+    $data['username'];
+    $data['title'];
+    $data['timestamp'];
     $comment = $_POST['comment'];
 
     if(isset($_POST['id'])){
